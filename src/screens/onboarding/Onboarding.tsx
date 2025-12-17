@@ -10,8 +10,11 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { theme } from '../../theme';
 import { styles } from './styles';
+import { RootStackParamList } from '../../routes';
 
 type FeatherIconName = React.ComponentProps<typeof Feather>['name'];
 
@@ -66,6 +69,7 @@ export function OnboardingScreen() {
   const { width } = useWindowDimensions();
   const [currentIndex, setCurrentIndex] = useState(0);
   const slidesRef = useRef<FlatList<SlideProps>>(null);
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const viewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     if (viewableItems && viewableItems.length > 0) {
@@ -76,7 +80,7 @@ export function OnboardingScreen() {
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
   const handleFinish = () => {
-    console.log('Navegar para Login');
+    navigation.navigate('Login');
   };
 
   return (
