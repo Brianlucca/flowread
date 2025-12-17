@@ -1,32 +1,31 @@
 export const theme = {
   colors: {
-    // A Marca (Gradiente)
     brand: {
-      primary: '#8B5CF6',   // Roxo
-      secondary: '#EC4899', // Rosa
+      primary: '#8B5CF6',
+      secondary: '#EC4899',
       gradient: ['#8B5CF6', '#EC4899'] as const, 
     },
-    
-    // Fundo
     background: {
-      main: '#0F172A',      // Fundo principal (Escuro)
-      card: '#1E293B',      // Fundo dos cards
-      input: '#334155',     // Fundo dos inputs
+      main: '#0F172A',
+      card: '#1E293B',
+      input: '#334155',
     },
-
-    // Texto
     text: {
-      heading: '#F8FAFC',   // Branco (Títulos)
-      body: '#CBD5E1',      // Cinza Claro (Parágrafos)
-      muted: '#64748B',     // Cinza Escuro (Detalhes)
-      inverse: '#FFFFFF',   // Texto sobre cor forte
+      heading: '#F8FAFC',
+      body: '#CBD5E1',
+      muted: '#64748B',
+      inverse: '#FFFFFF',
     },
-
-    // Status
     status: {
       error: '#EF4444',
       success: '#10B981',
     }
+  },
+
+  fontFamily: {
+    regular: 'Inter_400Regular',
+    medium: 'Inter_500Medium',
+    bold: 'Inter_700Bold',
   },
 
   fontSizes: {
