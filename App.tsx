@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_700Bold } from '@expo-google-fonts/inter';
 import { theme } from './src/theme';
+// Importe a tela de Onboarding
+import { OnboardingScreen } from './src/screens/onboarding/Onboarding';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,11 +20,10 @@ export default function App() {
     );
   }
 
+  // Renderiza a tela de Onboarding
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Design System Pronto!</Text>
-      <Text style={styles.subtitle}>Fonte Inter e Tema Dark configurados.</Text>
-      <StatusBar style="light" />
+      <OnboardingScreen />
     </View>
   );
 }
@@ -36,19 +37,5 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background.main,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  title: {
-    fontFamily: theme.fontFamily.bold,
-    fontSize: theme.fontSizes.xl,
-    color: theme.colors.text.heading,
-    marginBottom: theme.spacing.sm,
-  },
-  subtitle: {
-    fontFamily: theme.fontFamily.regular,
-    fontSize: theme.fontSizes.md,
-    color: theme.colors.text.body,
-  }
 });
