@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_700Bold } from '@expo-google-fonts/inter';
 import { theme } from './src/theme';
-// Importe a tela de Onboarding
-import { OnboardingScreen } from './src/screens/onboarding/Onboarding';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -20,10 +19,10 @@ export default function App() {
     );
   }
 
-  // Renderiza a tela de Onboarding
   return (
     <View style={styles.container}>
-      <OnboardingScreen />
+      <Routes />
+      <StatusBar style="light" />
     </View>
   );
 }
@@ -37,5 +36,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: theme.colors.background.main,
   },
 });
