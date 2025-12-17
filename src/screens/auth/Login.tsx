@@ -25,8 +25,9 @@ export function LoginScreen() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  function handleLogin() {
+function handleLogin() {
     console.log('Login:', { email, password });
+    navigation.navigate('App'); 
   }
 
   function handleGoogleLogin() {

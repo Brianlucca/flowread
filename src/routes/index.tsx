@@ -5,13 +5,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { OnboardingScreen } from '../screens/onboarding/Onboarding';
 import { LoginScreen } from '../screens/auth/Login';
 import { RegisterScreen } from '../screens/auth/Register';
-import { HomeScreen } from '../screens/home/Home';
+
+import { AppRoutes } from './app.routes'; 
 
 export type RootStackParamList = {
   Onboarding: undefined;
   Login: undefined;
   Register: undefined;
-  Home: undefined;
+  App: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -20,7 +21,7 @@ export function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="Home"
+        initialRouteName="Onboarding"
         screenOptions={{ 
           headerShown: false,
           animation: 'slide_from_right'
@@ -29,7 +30,7 @@ export function Routes() {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="App" component={AppRoutes} />
       </Stack.Navigator>
     </NavigationContainer>
   );
