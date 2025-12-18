@@ -9,9 +9,12 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { theme } from '../../theme';
 import { styles } from './styles';
+import { RootStackParamList } from '../../routes';
 
 const GROUPS = [
   { 
@@ -49,13 +52,17 @@ const GROUPS = [
 ];
 
 export function GroupsScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   function handleCreateGroup() {
     Alert.alert('Novo Grupo', 'Navegar para tela de criação de grupo');
   }
 
-  function handleOpenGroup(groupName: string) {
-    console.log(`Abrindo grupo: ${groupName}`);
+  function handleOpenGroup(group: typeof GROUPS[0]) {
+    navigation.navigate('Chat', { 
+      groupId: group.id, 
+      groupName: group.name 
+    });
   }
 
   return (
@@ -75,7 +82,7 @@ export function GroupsScreen() {
           <TouchableOpacity 
             style={styles.groupCard} 
             activeOpacity={0.7}
-            onPress={() => handleOpenGroup(item.name)}
+            onPress={() => handleOpenGroup(item)}
           >
             <Image source={{ uri: item.image }} style={styles.groupImage} />
             
