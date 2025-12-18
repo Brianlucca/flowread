@@ -14,9 +14,9 @@ import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { theme } from '../../theme';
+import { theme } from '../../../theme';
 import { styles } from './styles';
-import { RootStackParamList } from '../../routes';
+import { RootStackParamList } from '../../../routes';
 
 type ChatScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
 
@@ -28,10 +28,9 @@ const INITIAL_MESSAGES = [
 ];
 
 export function ChatScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const route = useRoute<ChatScreenRouteProp>();
-  const { groupName } = route.params;
-  
+  const { groupName, groupId } = route.params;
   const insets = useSafeAreaInsets();
 
   const [messages, setMessages] = useState(INITIAL_MESSAGES);
@@ -67,6 +66,17 @@ export function ChatScreen() {
     }, 100);
   }
 
+  function handleOpenDetails() {
+    navigation.navigate('GroupDetails', {
+        group: {
+            id: groupId,
+            name: groupName,
+            image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200', 
+            description: 'Detalhes do grupo acessados pelo chat.'
+        }
+    });
+  }
+
   return (
     <View style={styles.safeArea}>
       <StatusBar style="dark" translucent backgroundColor="transparent" />
@@ -76,20 +86,26 @@ export function ChatScreen() {
           <Feather name="arrow-left" size={24} color="#000" />
         </TouchableOpacity>
         
-        <View style={styles.headerAvatar}>
-            <Text style={styles.headerInitials}>{groupName[0]}</Text>
-        </View>
+        <TouchableOpacity 
+            style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }} 
+            activeOpacity={0.7}
+            onPress={handleOpenDetails}
+        >
+            <View style={styles.headerAvatar}>
+                <Text style={styles.headerInitials}>{groupName[0]}</Text>
+            </View>
 
-        <View style={styles.headerContent}>
-          <Text style={styles.headerTitle} numberOfLines={1}>{groupName}</Text>
-          <Text style={styles.headerSubtitle}>4 membros online</Text>
-        </View>
+            <View style={styles.headerContent}>
+            <Text style={styles.headerTitle} numberOfLines={1}>{groupName}</Text>
+            <Text style={styles.headerSubtitle}>Toque para ver detalhes</Text>
+            </View>
+        </TouchableOpacity>
       </View>
 
       <KeyboardAvoidingView 
         style={{ flex: 1 }} 
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined} 
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 30}
       >
         <View style={styles.container}>
           <FlatList
