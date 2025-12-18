@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     fontFamily: theme.fontFamily.regular,
   },
+  
   bookItem: {
     flexDirection: 'row',
     marginBottom: 20,
@@ -60,9 +61,7 @@ export const styles = StyleSheet.create({
     fontFamily: theme.fontFamily.regular,
     marginBottom: 12,
   },
-  progressContainer: {
-    marginTop: 4,
-  },
+  progressContainer: { marginTop: 4 },
   progressTrack: {
     height: 6,
     backgroundColor: theme.colors.background.input,
@@ -93,5 +92,57 @@ export const styles = StyleSheet.create({
     color: '#22c55e',
     fontSize: 12,
     fontFamily: theme.fontFamily.bold,
+  },
+
+  highlightItem: {
+    backgroundColor: theme.colors.background.card,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    borderLeftWidth: 4,
+    borderLeftColor: theme.colors.brand.primary,
+  },
+  highlightHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  highlightBookTitle: {
+    fontSize: 12,
+    fontFamily: theme.fontFamily.bold,
+    color: theme.colors.text.muted,
+    textTransform: 'uppercase',
+  },
+  highlightDate: {
+    fontSize: 12,
+    color: theme.colors.text.muted,
+  },
+  highlightText: {
+    fontSize: 16,
+    fontFamily: theme.fontFamily.regular,
+    color: theme.colors.text.body,
+    lineHeight: 24,
+    fontStyle: 'italic',
+    marginBottom: 12,
+  },
+  highlightFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: 8,
+  },
+  socialTag: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(233, 30, 99, 0.1)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  socialText: {
+    fontSize: 10,
+    color: theme.colors.brand.secondary,
+    fontFamily: theme.fontFamily.bold,
+    marginLeft: 4,
   }
 });
