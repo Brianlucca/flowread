@@ -4,19 +4,16 @@ import {
   Text, 
   FlatList, 
   Image, 
-  TouchableOpacity, 
-  Alert 
+  TouchableOpacity 
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
-import { theme } from '../../theme'; // Ajuste os "../" conforme sua pasta
 import { styles } from './styles';
-import { RootStackParamList } from '../../routes'; // Ajuste os "../" conforme sua pasta
+import { RootStackParamList, GroupData } from '../../routes/navigationType'; 
 
-const GROUPS = [
+const GROUPS: GroupData[] = [
   { 
     id: '1', 
     name: 'Clube da Luta (Leitura)', 
@@ -53,15 +50,16 @@ const GROUPS = [
   },
 ];
 
+type GroupsScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export function GroupsScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<GroupsScreenNavigationProp>();
 
   function handleCreateGroup() {
-    Alert.alert('Novo Grupo', 'Navegar para tela de criação de grupo');
+    navigation.navigate('CreateGroup');
   }
 
-  // AQUI FOI A MUDANÇA: Agora vai para GroupDetails
-  function handleOpenGroup(group: typeof GROUPS[0]) {
+  function handleOpenGroup(group: GroupData) {
     navigation.navigate('GroupDetails', { 
       group: group 
     });
