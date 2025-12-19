@@ -13,7 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { theme } from '../../../theme';
 import { styles } from './styles';
-import { RootStackParamList } from '../../../routes';
+import { RootStackParamList } from '../../../routes/navigationType';
 
 type GroupDetailsRouteProp = RouteProp<RootStackParamList, 'GroupDetails'>;
 
