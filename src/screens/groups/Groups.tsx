@@ -9,9 +9,12 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { theme } from '../../theme';
+import { theme } from '../../theme'; // Ajuste os "../" conforme sua pasta
 import { styles } from './styles';
+import { RootStackParamList } from '../../routes'; // Ajuste os "../" conforme sua pasta
 
 const GROUPS = [
   { 
@@ -20,7 +23,8 @@ const GROUPS = [
     lastMessage: 'Pessoal, o capítulo 3 explodiu minha mente! 🤯', 
     time: '10:42', 
     unread: 2,
-    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200' 
+    image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200',
+    description: 'Grupo oficial para debate do livro Clube da Luta. Cuidado com os spoilers!'
   },
   { 
     id: '2', 
@@ -28,7 +32,8 @@ const GROUPS = [
     lastMessage: 'João: Alguém vai na Bienal?', 
     time: 'Ontem', 
     unread: 0,
-    image: 'https://images.unsplash.com/photo-1531988042231-d39a9cc12a9a?q=80&w=200' 
+    image: 'https://images.unsplash.com/photo-1531988042231-d39a9cc12a9a?q=80&w=200',
+    description: 'Espaço para amantes de Sci-Fi, Cyberpunk e Distopias.'
   },
   { 
     id: '3', 
@@ -49,13 +54,17 @@ const GROUPS = [
 ];
 
 export function GroupsScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   function handleCreateGroup() {
     Alert.alert('Novo Grupo', 'Navegar para tela de criação de grupo');
   }
 
-  function handleOpenGroup(groupName: string) {
-    console.log(`Abrindo grupo: ${groupName}`);
+  // AQUI FOI A MUDANÇA: Agora vai para GroupDetails
+  function handleOpenGroup(group: typeof GROUPS[0]) {
+    navigation.navigate('GroupDetails', { 
+      group: group 
+    });
   }
 
   return (
@@ -75,7 +84,7 @@ export function GroupsScreen() {
           <TouchableOpacity 
             style={styles.groupCard} 
             activeOpacity={0.7}
-            onPress={() => handleOpenGroup(item.name)}
+            onPress={() => handleOpenGroup(item)}
           >
             <Image source={{ uri: item.image }} style={styles.groupImage} />
             
