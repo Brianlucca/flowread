@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, FlatList, TouchableOpacity, Text, Image, ActivityIndicator } from 'react-native';
+import { View, ScrollView, FlatList, TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,7 @@ import { Stories } from '../../components/home/stories/Stories';
 import { PostInput } from '../../components/home/post-input/PostInput';
 import { FeedPost } from '../../components/home/feed-post/FeedPost';
 import { HeroCarousel } from '../../components/home/hero-carousel/HeroCarousel';
+import { BookCard } from '../../components/book-card/BookCard';
 
 const FEED_MOCK = [
     {
@@ -75,6 +76,21 @@ export function HomeScreen() {
   function handleOpenBook(book: any) {
      navigation.navigate('BookDetails', { book });
   }
+
+  const renderBookList = ({ item, index }: { item: any, index: number }) => (
+    <BookCard 
+        data={{
+            id: item.id,
+            title: item.volumeInfo.title,
+            author: item.volumeInfo.authors?.[0] || 'Desconhecido',
+            coverUrl: item.volumeInfo.imageLinks?.thumbnail?.replace('http:', 'https:') || '',
+            tags: item.volumeInfo.categories
+        }}
+        onPress={() => handleOpenBook(item)}
+        index={index}
+        style={{ width: 280, marginRight: 16 }}
+    />
+  );
 
   if (loading) {
       return (
@@ -148,13 +164,7 @@ export function HomeScreen() {
            data={techBooks}
            showsHorizontalScrollIndicator={false}
            contentContainerStyle={styles.listContent}
-           renderItem={({ item }) => (
-               <TouchableOpacity style={styles.bookCard} onPress={() => handleOpenBook(item)} activeOpacity={0.7}>
-                   <Image source={{ uri: item.volumeInfo.imageLinks?.thumbnail }} style={styles.bookCover} />
-                   <Text numberOfLines={2} style={styles.bookTitle}>{item.volumeInfo.title}</Text>
-                   <Text numberOfLines={1} style={styles.bookAuthor}>{item.volumeInfo.authors?.[0]}</Text>
-               </TouchableOpacity>
-           )}
+           renderItem={renderBookList}
         />
 
         <View style={styles.sectionHeader}>
@@ -167,13 +177,7 @@ export function HomeScreen() {
            data={fictionBooks}
            showsHorizontalScrollIndicator={false}
            contentContainerStyle={styles.listContent}
-           renderItem={({ item }) => (
-               <TouchableOpacity style={styles.bookCard} onPress={() => handleOpenBook(item)} activeOpacity={0.7}>
-                   <Image source={{ uri: item.volumeInfo.imageLinks?.thumbnail }} style={styles.bookCover} />
-                   <Text numberOfLines={2} style={styles.bookTitle}>{item.volumeInfo.title}</Text>
-                   <Text numberOfLines={1} style={styles.bookAuthor}>{item.volumeInfo.authors?.[0]}</Text>
-               </TouchableOpacity>
-           )}
+           renderItem={renderBookList}
         />
       </ScrollView>
     </View>
