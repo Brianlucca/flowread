@@ -1,143 +1,137 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { theme } from '../../../theme';
+
+const { width } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#F2F2F7',
   },
-  
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    paddingTop: Platform.OS === 'android' ? 40 : 10,
-    paddingBottom: 16,
+    backgroundColor: theme.colors.background.main,
     paddingHorizontal: 16,
+    paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#E0E0E0',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    zIndex: 100,
+    borderBottomColor: theme.colors.background.input,
+    zIndex: 10,
   },
   backButton: {
-    padding: 8,
-    marginRight: 8,
+    marginRight: 12,
+    padding: 4,
   },
   headerAvatar: {
     width: 40,
     height: 40,
     borderRadius: 20,
     backgroundColor: theme.colors.brand.primary,
-    justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
+    justifyContent: 'center',
+    marginRight: 10,
   },
   headerInitials: {
     color: '#FFF',
-    fontWeight: 'bold',
+    fontFamily: 'Inter_700Bold',
     fontSize: 16,
   },
   headerContent: {
-    justifyContent: 'center',
+    flex: 1,
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#000000',
+    fontFamily: 'Inter_700Bold',
+    fontSize: 16,
+    color: theme.colors.text.heading, 
   },
   headerSubtitle: {
+    fontFamily: 'Inter_400Regular',
     fontSize: 12,
-    color: '#666666',
+    color: theme.colors.text.muted,
   },
-
   container: {
     flex: 1,
   },
   messagesList: {
     paddingHorizontal: 16,
+    paddingBottom: 20,
     paddingTop: 16,
-    paddingBottom: 16,
   },
-
+  senderName: {
+    fontSize: 12,
+    color: theme.colors.text.muted,
+    marginBottom: 4,
+    marginLeft: 4,
+    marginTop: 8,
+    fontFamily: 'Inter_500Medium',
+  },
   bubbleContainer: {
-    maxWidth: '75%',
+    maxWidth: width * 0.75,
     padding: 12,
     borderRadius: 16,
-    marginBottom: 10,
-    elevation: 1,
+    marginBottom: 2,
   },
-  
   bubbleMine: {
     alignSelf: 'flex-end',
     backgroundColor: theme.colors.brand.primary,
-    borderBottomRightRadius: 2,
+    borderBottomRightRadius: 4,
+  },
+  bubbleOther: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#FFFFFF',
+    borderTopLeftRadius: 4,
   },
   textMine: {
     color: '#FFFFFF',
     fontSize: 16,
+    fontFamily: 'Inter_400Regular',
+  },
+  textOther: {
+    color: theme.colors.text.body, 
+    fontSize: 16,
+    fontFamily: 'Inter_400Regular',
   },
   timeMine: {
-    color: 'rgba(255,255,255,0.8)',
     fontSize: 10,
+    color: 'rgba(255,255,255,0.7)',
     alignSelf: 'flex-end',
     marginTop: 4,
   },
-
-  bubbleOther: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#FFFFFF',
-    borderBottomLeftRadius: 2,
-  },
-  textOther: {
-    color: '#333333',
-    fontSize: 16,
-  },
   timeOther: {
-    color: '#999999',
     fontSize: 10,
-    alignSelf: 'flex-start',
+    color: theme.colors.text.muted,
+    alignSelf: 'flex-end',
     marginTop: 4,
   },
-  senderName: {
-    fontSize: 12,
-    color: '#666666',
-    marginLeft: 12,
-    marginBottom: 2,
-    fontWeight: '600',
-  },
-
   inputWrapper: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background.main,
+    padding: 10,
     borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
+    borderTopColor: theme.colors.background.input,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: theme.colors.background.input,
+    borderRadius: 24,
     paddingHorizontal: 12,
-    paddingTop: 12,
+    paddingVertical: 8,
+    minHeight: 48,
   },
   input: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 24,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    fontFamily: 'Inter_400Regular',
     fontSize: 16,
-    color: '#333',
+    color: theme.colors.text.body, 
     maxHeight: 100,
-    marginRight: 12,
+    marginRight: 8,
   },
   sendButton: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: theme.colors.brand.primary,
-    justifyContent: 'center',
     alignItems: 'center',
-  }
+    justifyContent: 'center',
+  },
 });

@@ -16,7 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../../../theme';
 import { styles } from './styles';
-import { RootStackParamList } from '../../../routes';
+import { RootStackParamList } from '../../../routes/navigationType';
 
 type ChatScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
 
