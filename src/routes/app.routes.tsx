@@ -1,18 +1,37 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Feather } from '@expo/vector-icons';
-import { Platform } from 'react-native';
+import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { theme } from '../theme';
+
+// Importação das Telas
 import { HomeScreen } from '../screens/home/Home';
-import { SearchScreen } from '../screens/search/Search';
+import { MatchScreen } from '../screens/match/Match';
 import { ShelfScreen } from '../screens/shelf/Shelf';
 import { GroupsScreen } from '../screens/groups/Groups';
 import { ProfileScreen } from '../screens/profile/Profile';
+import { BookDetailsScreen } from '../screens/book-details/BookDetails';
+import { StoryViewerScreen } from '../screens/story-viewer/StoryViewer';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-export function AppRoutes() {
+function HomeStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="HomeMain" component={HomeScreen} />
+      <Stack.Screen 
+        name="BookDetails" 
+        component={BookDetailsScreen} 
+        options={{ animation: 'slide_from_right' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function AppTabs() {
   const insets = useSafeAreaInsets();
 
   return (
@@ -33,21 +52,34 @@ export function AppRoutes() {
       }}
     >
       <Tab.Screen 
-        name="Home" 
-        component={HomeScreen}
+        name="HomeTab"
+        component={HomeStack}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Feather name="home" color={color} size={26} />
-          )
+          tabBarIcon: ({ color }) => <Feather name="home" color={color} size={26} />
         }}
       />
       
       <Tab.Screen 
-        name="Busca" 
-        component={SearchScreen}
+        name="Match" 
+        component={MatchScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Feather name="search" color={color} size={26} />
+          tabBarIcon: ({ color }) => <Feather name="zap" color={color} size={26} />,
+          tabBarActiveTintColor: '#FFFFFF',
+          tabBarInactiveTintColor: 'rgba(255,255,255,0.5)',
+          tabBarStyle: {
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: 'transparent',
+            borderTopWidth: 0,
+            elevation: 0,
+            height: 72 + insets.bottom,
+            paddingBottom: insets.bottom,
+            paddingTop: 12,
+          },
+          tabBarBackground: () => (
+             <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.3)' }} />
           )
         }} 
       />
@@ -56,9 +88,7 @@ export function AppRoutes() {
         name="Estante" 
         component={ShelfScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Feather name="book" color={color} size={26} />
-          )
+          tabBarIcon: ({ color }) => <Feather name="book" color={color} size={26} />
         }} 
       />
 
@@ -66,9 +96,7 @@ export function AppRoutes() {
         name="Grupos" 
         component={GroupsScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Feather name="users" color={color} size={26} />
-          )
+          tabBarIcon: ({ color }) => <Feather name="users" color={color} size={26} />
         }} 
       />
 
@@ -76,11 +104,30 @@ export function AppRoutes() {
         name="Perfil" 
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ color }) => (
-            <Feather name="user" color={color} size={26} />
-          )
+          tabBarIcon: ({ color }) => <Feather name="user" color={color} size={26} />
         }} 
       />
     </Tab.Navigator>
+  );
+}
+
+export function AppRoutes() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      
+      <Stack.Screen name="AppTabs" component={AppTabs} />
+      
+      <Stack.Screen 
+        name="StoryViewer" 
+        component={StoryViewerScreen}
+        options={{
+            presentation: 'fullScreenModal',
+            animation: 'slide_from_bottom',
+            headerShown: false,
+            navigationBarColor: 'black' 
+        }} 
+      />
+
+    </Stack.Navigator>
   );
 }
