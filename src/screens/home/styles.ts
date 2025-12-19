@@ -1,109 +1,96 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { theme } from '../../theme';
-
-const { width } = Dimensions.get('window');
-const cardWidth = width * 0.9;
-const cardHeight = cardWidth * 1.5;
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background.main,
-    paddingTop: 60, 
+    paddingTop: 50,
+  },
+  scrollContent: {
+    paddingBottom: 40,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: theme.spacing.lg,
-    marginBottom: theme.spacing.md,
+    paddingHorizontal: 24,
+    marginBottom: 16,
   },
   headerTitle: {
-    fontSize: theme.fontSizes.xl,
+    fontSize: 24,
     fontFamily: theme.fontFamily.bold,
-    color: theme.colors.text.heading,
+    color: theme.colors.brand.primary,
   },
   headerSubtitle: {
-    fontSize: theme.fontSizes.sm,
-    fontFamily: theme.fontFamily.regular,
+    fontSize: 14,
     color: theme.colors.text.muted,
+    fontFamily: theme.fontFamily.regular,
   },
-  mainContent: {
-    flex: 1,
-    alignItems: 'center',
+  iconButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: theme.colors.background.input,
     justifyContent: 'center',
-  },
-  card: {
-    width: cardWidth,
-    height: cardHeight,
-    borderRadius: theme.borderRadius.md,
-    backgroundColor: theme.colors.background.card,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: theme.colors.background.input,
+    alignItems: 'center',
     position: 'relative',
   },
-  cardImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  cardOverlay: {
+  badge: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: theme.colors.status.error,
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: '40%',
-    justifyContent: 'flex-end',
-    padding: theme.spacing.lg,
+    top: 10,
+    right: 10,
+    borderWidth: 2,
+    borderColor: theme.colors.background.input,
   },
-  cardTag: {
-    backgroundColor: theme.colors.brand.primary,
-    paddingHorizontal: theme.spacing.sm,
-    paddingVertical: theme.spacing.xs,
-    borderRadius: theme.borderRadius.sm,
-    alignSelf: 'flex-start',
-    marginBottom: theme.spacing.xs,
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    marginBottom: 16,
+    marginTop: 16,
   },
-  cardTagText: {
-    color: theme.colors.text.inverse,
-    fontSize: theme.fontSizes.xs,
-    fontFamily: theme.fontFamily.bold,
-  },
-  cardTitle: {
-    fontSize: theme.fontSizes.xl,
+  sectionTitle: {
+    fontSize: 18,
     fontFamily: theme.fontFamily.bold,
     color: theme.colors.text.heading,
-    marginBottom: theme.spacing.xs,
   },
-  cardDescription: {
-    fontSize: theme.fontSizes.md,
-    fontFamily: theme.fontFamily.regular,
-    color: theme.colors.text.body,
+  seeAll: {
+    fontSize: 12,
+    fontFamily: theme.fontFamily.bold,
+    color: theme.colors.brand.primary,
   },
-  actionsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    paddingBottom: 40,
-    width: '100%',
+  feedContainer: {
+    paddingHorizontal: 24,
   },
-  actionButton: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: theme.colors.background.card,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: theme.colors.background.input,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.30,
-    shadowRadius: 4.65,
-    elevation: 8,
+  listContent: {
+    paddingHorizontal: 24,
+    paddingBottom: 20,
+  },
+  bookCard: {
+    width: 120,
+    marginRight: 16,
+  },
+  bookCover: {
+    width: 120,
+    height: 180,
+    borderRadius: 16,
+    marginBottom: 8,
+    backgroundColor: theme.colors.background.input,
+  },
+  bookTitle: {
+    fontSize: 14,
+    fontFamily: theme.fontFamily.bold,
+    color: theme.colors.text.heading,
+    marginBottom: 2,
+  },
+  bookAuthor: {
+    fontSize: 12,
+    color: theme.colors.text.muted,
   },
 });
